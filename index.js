@@ -21,8 +21,6 @@ http.createServer(async function (req, res) {
       return;
     }
 
-    // unAuth(res);
-    // return;
     if(!authorization) {
       unAuth(res)
       return;
