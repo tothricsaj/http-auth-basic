@@ -9,7 +9,7 @@ function unAuth(res) {
 }
 
 //create a server object:
-http.createServer(function (req, res) {
+http.createServer(async function (req, res) {
 
   try {
     const { authorization } = req.headers;
@@ -39,8 +39,24 @@ http.createServer(function (req, res) {
           'Content-type': 'text/html',
           'Cache-Control': 'no-cache'
         });
-        res.write('Hello Ricsi!')
-        return res.end();
+
+        try {
+          const data = await fs.readFile('./index.html');
+
+          res.write(data)
+
+          return res.end();
+
+        } catch(error) {
+
+          console.log(error);
+
+          res.writeHead(500);
+
+          return res.end();
+        }
+
+        
       } else {
 
         unAuth(res);
