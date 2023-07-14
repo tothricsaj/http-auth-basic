@@ -9,5 +9,17 @@
 </head>
 <body>
   <h2>http auth with pure nodejs (basic)</h2>
+
+  <button>Logout</button>
+
+  <script>
+    const btn = document.querySelector('button');
+
+    const logout = () => {
+      fetch('http://localhost:8080/?logout=true');
+    };
+
+    btn.addEventListener('click', logout);
+  </script>
 </body>
 </html>

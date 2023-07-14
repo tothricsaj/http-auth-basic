@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs/promises');
+const url = require('url');
 
 function unAuth(res) {
   res.writeHead(401, {
@@ -13,6 +14,12 @@ http.createServer(async function (req, res) {
 
   try {
     const { authorization } = req.headers;
+    const { query } = url.parse(req.url, true);
+
+    if(query.logout) {
+      unAuth(res);
+      return;
+    }
 
     // unAuth(res);
     // return;
