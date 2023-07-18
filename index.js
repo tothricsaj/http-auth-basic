@@ -35,7 +35,7 @@ http.createServer(async function (req, res) {
         .split(':')
       ;
 
-      if(user === 'ricsi' && pass === 'password') {
+      if(user === 'foo' && pass === 'bar') {
         res.writeHead(200, {
           'Content-type': 'text/html',
           'Cache-Control': 'no-cache'
@@ -65,8 +65,6 @@ http.createServer(async function (req, res) {
         return res.end();
       }
     }
-
-    res.write('Hello world!');
 
     return res.end();
 
