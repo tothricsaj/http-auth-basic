@@ -29,15 +29,11 @@ http.createServer(async function (req, res) {
     const encodedAuth = authorization || '';
     const encodedUserNameAndPass = encodedAuth ? encodedAuth.split(' ')[1] : '';
 
-    console.log(encodedAuth);
-    console.log(encodedUserNameAndPass);
-
     if(encodedUserNameAndPass) {
       const [user, pass] = Buffer.from(encodedUserNameAndPass, 'base64')
         .toString('utf-8')
         .split(':')
       ;
-      console.log(user, pass);
 
       if(user === 'ricsi' && pass === 'password') {
         res.writeHead(200, {
@@ -54,7 +50,7 @@ http.createServer(async function (req, res) {
 
         } catch(error) {
 
-          console.log(error);
+          console.log(error); // handle error
 
           res.writeHead(500);
 
@@ -71,12 +67,11 @@ http.createServer(async function (req, res) {
     }
 
     res.write('Hello world!');
+
     return res.end();
 
-
-
   } catch(error) {
-    console.log(error);
+    console.log(error); // handle error
     res.writeHead(500)
     res.end
   }
